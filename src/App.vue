@@ -1,5 +1,5 @@
-<template>
-  <v-app>
+<template @userWelcome="userWelcom">
+  <v-app @userWelcome="userWelcom">
     <v-navigation-drawer
       :persistent="true"
       :mini-variant="miniVariant"
@@ -35,9 +35,7 @@
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>remove</v-icon>
       </v-btn>
-      <LogInMenu>
-      </LogInMenu>
-      <v-toolbar-title v-text="userName"></v-toolbar-title>
+      <LogInMenu @userWelcome="userWelcome"></LogInMenu>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
@@ -48,12 +46,9 @@
       </v-btn>
     </v-toolbar>
     <v-content>
-      <router-view/>
-    </v-content>
-    <v-content>
       <v-text-field box v-model="customVar">
       </v-text-field>
-      <HelloWorld :prop="customVar"></HelloWorld>
+      <HelloWorld :prop="customVar" :userName="userName"></HelloWorld>
     </v-content>
     <v-navigation-drawer
       temporary
@@ -86,6 +81,7 @@ export default {
     return {
       clipped: false,
       drawer: true,
+      userName: '',
       fixed: false,
       items: [{
         icon: 'bubble_chart',
@@ -95,14 +91,18 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js',
-      customVar: 'Privet',
-      userName: ''
+      customVar: 'Privet'
     }
   },
   components: {
     HelloWorld,
     LogInMenu
   },
-  name: 'App'
+  name: 'App',
+  methods: {
+    userWelcome (userName) {
+      this.userName = userName
+    }
+  }
 }
 </script>

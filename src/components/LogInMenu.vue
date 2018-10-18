@@ -21,23 +21,38 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false, viewName = true, viewLogIn = false, viewLogOut = true">Log in</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false, viewName = true, viewLogIn = false, viewLogOut = true" @click="userWelcomeClick">Log in</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
     <v-btn v-show = "viewLogOut" dark @click.native="viewLogIn = true, viewLogOut = false, viewName = false">Log Out</v-btn>
-    <div v-show = "viewName">Hi, {{userName}}</div>
+    <div id = "welcomeTitle"  v-show = "viewName">Hi, {{userName}}</div>
   </v-layout>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      dialog: false,
-      userName: '',
-      viewName: false,
-      viewLogIn: true,
-      viewLogOut: false
-    })
+
+export default {
+  data: () => ({
+    dialog: false,
+    userName: '',
+    viewName: false,
+    viewLogIn: true,
+    viewLogOut: false
+  }),
+  methods: {
+    userWelcomeClick () {
+      this.$emit('userWelcome', this.userName)
+    }
   }
+}
 </script>
+
+<style>
+#welcomeTitle{
+  margin: auto auto;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+

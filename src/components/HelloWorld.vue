@@ -6,8 +6,8 @@
         <blockquote>
           &#8220;First, solve the problem. Then, write the code.&#8221;
           <footer>
-            <small>
-              <em>&mdash;{{prop}} Johnson</em>
+            <small >
+              <em>&mdash;{{prop}} {{userName}}</em>
             </small>
           </footer>
         </blockquote>
@@ -16,17 +16,19 @@
   </v-container>
 </template>
 
-<script>
-  export default {
-    props: {
-      prop: ''
-    },
-    data () {
-      return {
 
-      }
+
+<script>
+export default {
+  props: {
+    prop: '',
+    userName: ''
+  },
+  data () {
+    return {
     }
   }
+}
 </script>
 
 
