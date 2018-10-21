@@ -36,8 +36,8 @@
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>remove</v-icon>
       </v-btn>
+      <router-link to="/event-list"><v-btn dark>TABLE</v-btn></router-link>
       <LogInMenu @userWelcome="userWelcome"></LogInMenu>
-      <router-link to="/event-list" id="bt1">TABLE</router-link>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
@@ -111,12 +111,7 @@ export default {
 </script>
 
 <style>
-  #bt1{
-    color: white;
-    background: black;
+* {
     text-decoration: none;
-    padding: 8px;
-    border-radius: 2px;
-    margin-right: 20px;
   }
 </style>
