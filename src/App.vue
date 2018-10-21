@@ -1,5 +1,6 @@
-<template @userWelcome="userWelcom">
-  <v-app @userWelcome="userWelcom">
+<template>
+  <v-app>
+    
     <v-navigation-drawer
       :persistent="true"
       :mini-variant="miniVariant"
@@ -36,6 +37,7 @@
         <v-icon>remove</v-icon>
       </v-btn>
       <LogInMenu @userWelcome="userWelcome"></LogInMenu>
+      <router-link to="/event-list" id="bt1">TABLE</router-link>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
@@ -49,6 +51,7 @@
       <v-text-field box v-model="customVar">
       </v-text-field>
       <HelloWorld :prop="customVar" :userName="userName"></HelloWorld>
+      <router-view></router-view>
     </v-content>
     <v-navigation-drawer
       temporary
@@ -106,3 +109,14 @@ export default {
   }
 }
 </script>
+
+<style>
+  #bt1{
+    color: white;
+    background: black;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 2px;
+    margin-right: 20px;
+  }
+</style>
