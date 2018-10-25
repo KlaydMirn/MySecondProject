@@ -1,19 +1,30 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="desserts"
-    hide-actions
-    class="elevation-1"
-  >
-    <template slot="items" slot-scope="props">
-      <td>{{ props.item.name }}</td>
-      <td class="text-xs-right">{{ props.item.calories }}</td>
-      <td class="text-xs-right">{{ props.item.fat }}</td>
-      <td class="text-xs-right">{{ props.item.carbs }}</td>
-      <td class="text-xs-right">{{ props.item.protein }}</td>
-      <td class="text-xs-right">{{ props.item.iron }}</td>
-    </template>
-  </v-data-table>
+  <v-card>
+    <v-card-title>
+      <div id="name-table">Nutrition</div>
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        append-icon="search"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>
+      <table>
+        <tr>
+          <td v-for="header in headers" class="text-xs-right">{{header.text}}</td>
+        </tr>
+        <tr v-for="dessert in filteredDesserts">
+          <td class="text-xs-right">{{dessert.name}}</td>
+          <td class="text-xs-right">{{dessert.calories}}</td>
+          <td class="text-xs-right">{{dessert.fat}}</td>
+          <td class="text-xs-right">{{dessert.carbs}}</td>
+          <td class="text-xs-right">{{dessert.protein}}</td>
+          <td class="text-xs-right">{{dessert.iron}}</td>
+        </tr>
+      </table>
+  </v-card>
 </template>
 
 <script>
@@ -33,6 +44,7 @@
           { text: 'Protein (g)', value: 'protein' },
           { text: 'Iron (%)', value: 'iron' }
         ],
+        search: '',
         desserts: [
           {
             value: false,
@@ -126,6 +138,26 @@
           }
         ]
       }
+    },
+    computed: {
+      filteredDesserts () {
+        return this.desserts.filter(dessert => {
+          return dessert.name.toLowerCase().includes(this.search.toLowerCase())
+        })
+      }
     }
   }
 </script>
+
+<style scoped>
+  table {
+    font-size: 20px;
+    padding: 15px;
+  }
+  td{
+    padding: 10px 200px 20px 0px;
+  }
+  #name-table {
+    font-size: 20px;
+  }
+</style>
