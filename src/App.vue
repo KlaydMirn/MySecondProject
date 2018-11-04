@@ -40,10 +40,7 @@
       <LogInMenu @userWelcome="userWelcome"></LogInMenu>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>menu</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+      <v-btn icon @click.stop="rightDrawer = !rightDrawer" @click="buttonAlert">
         <v-icon>menu</v-icon>
       </v-btn>
     </v-toolbar>
@@ -78,8 +75,12 @@
 <script>
 import HelloWorld from './components/HelloWorld'
 import LogInMenu from './components/LogInMenu'
+import functions from './mixins/functions'
 
 export default {
+  mixins: [functions],
+  componentName: 'App',
+  mainButtonName: 'Menu',
   data () {
     return {
       clipped: false,

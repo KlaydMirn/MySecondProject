@@ -4,7 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import Router from './router/index'
 import Vuetify from 'vuetify'
+import globals from './mixins/globals'
 import 'vuetify/dist/vuetify.min.css'
+
+Vue.mixin(globals)
 
 Vue.use(Vuetify, { theme: {
   primary: '#ee44aa',

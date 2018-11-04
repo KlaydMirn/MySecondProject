@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  componentName: 'HelloWorld',
   props: {
     prop: '',
     userName: ''
